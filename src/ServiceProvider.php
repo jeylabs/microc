@@ -9,6 +9,13 @@ use Jeylabs\Vendee\Services\ClientService;
 
 class ServiceProvider extends LumenServiceProvider
 {
+    public function boot()
+    {
+        $source = __DIR__ . '/config/vendee.php';
+        $this->app->configure('vendee');
+        $this->mergeConfigFrom($source, 'vendee');
+    }
+    
     public function register()
     {
         $this->app->bind(ClientServiceInterface::class, function () {
