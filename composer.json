@@ -1,0 +1,29 @@
+{
+  "name": "jeylabs/vendee",
+  "description": "Simple HTTP client for Micro Services",
+  "type": "library",
+  "require": {
+    "ext-json": "*",
+    "laravel/lumen-framework": "^5.8"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "S A Sureshkumar",
+      "email": "suresh.ceymplon@jeylabs.com.au"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Jeylabs\\Vendee\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Jeylabs\\Vendee\\ServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
