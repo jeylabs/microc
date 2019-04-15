@@ -29,7 +29,6 @@ class ClientService implements ClientServiceInterface
      */
     public function request($method, $uri, $query = null)
     {
-        $uri = trim($uri, ' /');
         $url = $this->baseUrl . '/' . $uri;
         $opts = [
             'http' => [
@@ -38,7 +37,9 @@ class ClientService implements ClientServiceInterface
             ]
         ];
         if ($method == 'POST' && $query) {
-            $opts['content'] = $query;
+            $opts['http']['content'] = json_encode($query);
+        } elseif ($method == 'GET' && $query) {
+            $url = trim($url, '? /') . '?' . http_build_query($query);
         }
         $context = stream_context_create($opts);
         return json_decode(file_get_contents($url, false, $context), true);
